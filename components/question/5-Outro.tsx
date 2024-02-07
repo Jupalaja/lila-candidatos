@@ -44,6 +44,11 @@ export function Outro() {
       {success && (
         <QuestionBoxPara className={submitted ? styles.rendered : ''}>
           <br />
+          Acompañanos en nuestro próxima reunión informativa el
+          <a href=" https://meet.google.com/ptg-tzjh-ong" target="_blank">
+            Jueves a las 6:00 pm
+          </a>{' '}
+          <br />
           Siguenos en{' '}
           <a href="https://www.instagram.com/wearesherpal/" target="_blank">
             instagram
