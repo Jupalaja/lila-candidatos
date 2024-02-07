@@ -1,6 +1,5 @@
 import { google } from 'googleapis';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import fetch from 'isomorphic-fetch';
 import dotenv from 'dotenv';
 import { format } from 'date-fns';
 dotenv.config();
@@ -28,17 +27,9 @@ export default async function handler(
 ) {
   type ReqBody = {
     name: string;
-    caretaker: string;
-    school: string;
-    grade: string;
-    courses: string[];
-    days: string[];
-    times: string[];
     phone: string;
-    email: string;
-    kind: string;
+    school: string;
     topic: string;
-    address: string;
   };
 
   if (req.method === 'POST') {
@@ -48,30 +39,16 @@ export default async function handler(
       const sheets = google.sheets({ version: 'v4', auth: client });
 
       const timestamp = format(new Date(), 'dd/MM/yyyy HH:mm:ss');
-
-      const courses = body.courses.join(', ');
-
-      const days = body.days.join(', ');
-      const times = body.times.join(', ');
-
       const googleSheetData = [
         body.name,
-        body.caretaker,
-        body.school,
-        body.grade,
-        courses,
-        days,
-        times,
-        body.kind,
         body.phone,
-        body.email,
-        body.address,
+        body.school,
         body.topic,
         timestamp,
       ];
       const googleSheetRequest = {
         spreadsheetId: process.env.SHEET_ID,
-        range: 'Hoja1!A1:M1',
+        range: 'Hoja1!A1:E1',
         valueInputOption: 'RAW',
         resource: { values: [googleSheetData] },
       };
@@ -79,36 +56,9 @@ export default async function handler(
         googleSheetRequest
       );
 
-      const iftttData = {
-        Nombre: body.name,
-        Padre: body.caretaker,
-        Colegio: body.school,
-        Nivel: body.grade,
-        Materias: body.courses,
-        Dias: body.days,
-        Horas: body.times,
-        Tipo: body.kind,
-        Telefono: body.phone,
-        Correo: body.email,
-        Direccion: body.address,
-        Tema: body.topic,
-        Registro: timestamp,
-      };
-      const iftttResponse = await fetch(
-        'https://maker.ifttt.com/trigger/lila/json/with/key/b2Y4VhUq8WCp1CaaK-D91t',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(iftttData),
-        }
-      );
-
-      if (response.status === 200 && iftttResponse.ok) {
+      if (response.status === 200) {
         res.status(200).json({
-          message:
-            'Data processed and sent successfully to both Google Sheets and IFTTT.',
+          message: 'Data processed and sent successfully to Google Sheets.',
         });
       } else {
         throw new Error(
