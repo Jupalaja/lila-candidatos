@@ -264,6 +264,7 @@
   height: 0;
   padding-bottom: 56.25%; /* Aspect ratio 16:9 */
   margin-bottom: 20px; /* Adjust as necessary */
+  border-radius: 10px;
 }
 
 .video-container iframe {

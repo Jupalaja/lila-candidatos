@@ -42,18 +42,18 @@ export function Intro() {
         <br />
         <br />
       </QuestionBoxPara>
-      {/* <div className="video-container">
+      <div className="video-container">
         <iframe
           id="youtube-video-iframe"
-          key={videoKey} // Use the videoKey to force re-render the iframe
-          width="560"
-          height="315"
+          key={videoKey}
+          width="100%"
+          height="350"
           src="https://www.youtube.com/embed/4oTTu-SMl1s"
           title="YouTube video player"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture "
           allowFullScreen
         ></iframe>
-      </div> */}
+      </div>
 
       <BtnContainer
         showPressEnter={true}
