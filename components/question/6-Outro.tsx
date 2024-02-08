@@ -45,12 +45,12 @@ export function Outro() {
       {success && (
         <QuestionBoxPara className={submitted ? styles.rendered : ''}>
           <br />
-          Acompañanos a nuestra reunión informativa el{' '}
+          Acompáñanos a nuestra reunión informativa el Jueves a las 6:00 pm en
+          el siguiente{' '}
           <a href=" https://meet.google.com/ptg-tzjh-ong" target="_blank">
-            Jueves a las 6:00 pm
-          </a>{' '}
-          <br />
-          Siguenos en{' '}
+            enlace
+          </a>
+          . Siguenos en{' '}
           <a href="https://www.instagram.com/wearesherpal/" target="_blank">
             instagram
           </a>{' '}
