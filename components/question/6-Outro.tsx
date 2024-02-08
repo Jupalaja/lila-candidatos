@@ -14,11 +14,12 @@ export function Outro() {
     if (submitting) return;
     setSubmitting(true);
 
-    const { name, phone, school, topic } = state;
+    const { name, phone, school, topic, email } = state;
     const dataToSend = {
       name,
       phone,
       school,
+      email,
       topic,
     };
 
@@ -44,7 +45,7 @@ export function Outro() {
       {success && (
         <QuestionBoxPara className={submitted ? styles.rendered : ''}>
           <br />
-          Acompañanos en nuestro próxima reunión informativa el
+          Acompañanos a nuestra reunión informativa el{' '}
           <a href=" https://meet.google.com/ptg-tzjh-ong" target="_blank">
             Jueves a las 6:00 pm
           </a>{' '}

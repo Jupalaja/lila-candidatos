@@ -1,42 +1,49 @@
-import { SET_TOPIC } from '@/reducers';
-import { ChangeEventHandler } from 'react';
+import { useQuestions, useSharedStates } from '@/contexts';
+import classNames from 'classnames';
 import {
   BtnContainer,
   Error,
-  QuestionNumHeading,
+  QuestionBoxPara,
   QuestionInputText,
+  QuestionNumHeading,
 } from '../index';
-import classNames from 'classnames';
-import styles from './Question.module.css';
 import Image from 'next/image';
-import { useQuestions, useSharedStates } from '@/contexts';
+import styles from './Question.module.css';
+import { ChangeEventHandler } from 'react';
+import { SET_EMAIL } from '@/reducers';
 
-export function TopicInput() {
+export function EmailInput() {
   const { errorMsg: error, setErrorMsg, handleOkClick } = useSharedStates();
   const { state, dispatch } = useQuestions();
 
-  const errorMsg = error.topic ?? '';
-  const { topic, name } = state;
+  const errorMsg = error.email ?? '';
+  const { email } = state;
 
   const handleInputChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     errorMsg &&
       setErrorMsg &&
       setErrorMsg((prevValue) => {
-        delete prevValue.topic;
+        delete prevValue.email;
         return prevValue;
       });
 
-    dispatch({ type: SET_TOPIC, payload: event.target.value });
+    dispatch({ type: SET_EMAIL, payload: event.target.value });
   };
 
   return (
     <>
       <QuestionNumHeading questionNum={4}>
-        ¿Que carrera estudias o estudiaste, {name.split(' ')[0]}?
+        Ingresa tu correo electrónico
       </QuestionNumHeading>
+
+      <QuestionBoxPara>
+        Nos ayudará a enviarte notificiones sobre las clases
+      </QuestionBoxPara>
+
       <QuestionInputText
-        placeholder="Carrera.."
-        value={topic}
+        type="email"
+        placeholder="nombre@ejemplo.com"
+        value={email}
         onChange={handleInputChange}
       />
 
@@ -48,7 +55,7 @@ export function TopicInput() {
           showPressEnter={true}
           onClick={handleOkClick}
         >
-          Confirmar{' '}
+          OK{' '}
           <Image
             src="/check-small.svg"
             alt="check small"

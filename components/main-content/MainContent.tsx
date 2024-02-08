@@ -68,7 +68,7 @@ export function MainContent() {
 
         {[3, 5].includes(prev ?? 0) && [now - 1, now, now + 1].includes(4) && (
           <Question
-            type="topic"
+            type="email"
             outView={[now - 1, now + 1].includes(4)}
             outViewSlide={now - 1 === 4 ? 'up' : 'down'}
             inView={now === 4}
@@ -76,12 +76,22 @@ export function MainContent() {
           />
         )}
 
-        {prev === 4 && [now - 1, now, now + 1].includes(5) && (
+        {[4, 6].includes(prev ?? 0) && [now - 1, now, now + 1].includes(5) && (
           <Question
-            type="outro"
+            type="topic"
             outView={[now - 1, now + 1].includes(5)}
             outViewSlide={now - 1 === 5 ? 'up' : 'down'}
             inView={now === 5}
+            inViewSlide={prev === 6 ? 'down' : 'up'}
+          />
+        )}
+
+        {prev === 5 && [now - 1, now, now + 1].includes(6) && (
+          <Question
+            type="outro"
+            outView={[now - 1, now + 1].includes(6)}
+            outViewSlide={now - 1 === 6 ? 'up' : 'down'}
+            inView={now === 6}
             inViewSlide={'up'}
           />
         )}

@@ -1,8 +1,15 @@
 import { QuestionProps } from '@/types';
 import classNames from 'classnames';
-import { NameInput, SchoolInput, Intro, PhoneInput, Outro } from './index';
+import {
+  NameInput,
+  SchoolInput,
+  Intro,
+  PhoneInput,
+  Outro,
+  EmailInput,
+  TopicInput,
+} from './index';
 import styles from './Question.module.css';
-import { TopicInput } from './4-TopicInput';
 
 export function Question({
   inView,
@@ -28,6 +35,7 @@ export function Question({
       {type === 'name' && <NameInput />}
       {type === 'phone' && <PhoneInput />}
       {type === 'school' && <SchoolInput />}
+      {type === 'email' && <EmailInput />}
       {type === 'topic' && <TopicInput />}
       {type == 'outro' && <Outro />}
     </div>

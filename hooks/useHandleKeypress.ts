@@ -1,5 +1,6 @@
 import { useQuestions, useSharedStates } from '@/contexts';
 import { useEffect } from 'react';
+import { isNotValidEmail } from '@/utils';
 
 export function useHandleKeypress() {
   const { questionNum, setErrorMsg, handleQuestionNumUpdate } =
@@ -43,7 +44,19 @@ export function useHandleKeypress() {
             school: 'Este campo es obligatorio',
           }));
           return;
-        } else if (now + 1 === 5 && topic === '') {
+        } else if (now + 1 === 5 && email === '') {
+          setErrorMsg((prevValue) => ({
+            ...prevValue,
+            email: 'Por favor ingresa tu email',
+          }));
+          return;
+        } else if (now + 1 === 5 && email && isNotValidEmail(email)) {
+          setErrorMsg((prevValue) => ({
+            ...prevValue,
+            email: 'Hmm... el Email no parece válido',
+          }));
+          return;
+        } else if (now + 1 === 6 && topic === '') {
           setErrorMsg((prevValue) => ({
             ...prevValue,
             topic: 'Este campo es obligatorio',
