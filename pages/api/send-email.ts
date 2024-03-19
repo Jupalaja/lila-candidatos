@@ -1,7 +1,8 @@
 import { google } from 'googleapis';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import dotenv from 'dotenv';
-import { format } from 'date-fns';
+import moment from 'moment-timezone';
+
 dotenv.config();
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -39,7 +40,10 @@ export default async function handler(
       const client = await authenticate();
       const sheets = google.sheets({ version: 'v4', auth: client });
 
-      const timestamp = format(new Date(), 'dd/MM/yyyy HH:mm:ss');
+      const timestamp = moment()
+        .tz('America/Bogota')
+        .format('DD/MM/YYYY HH:mm:ss');
+
       const googleSheetData = [
         body.name,
         body.phone,
