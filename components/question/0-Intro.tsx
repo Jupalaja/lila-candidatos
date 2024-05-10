@@ -42,7 +42,7 @@ export function Intro() {
         <br />
         <br />
       </QuestionBoxPara>
-      <div className="video-container">
+      {/* <div className="video-container">
         <iframe
           id="youtube-video-iframe"
           key={videoKey}
@@ -53,7 +53,7 @@ export function Intro() {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture "
           allowFullScreen
         ></iframe>
-      </div>
+      </div> */}
 
       <BtnContainer
         showPressEnter={true}
